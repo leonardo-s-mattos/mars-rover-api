@@ -10,13 +10,35 @@ public class MarsRoverShould {
 
     @ParameterizedTest
     @CsvSource({"1, 2, N, '1 2 N'",
-                "1, 3, N, '1 3 N'"})
-    void returnInitialPosition_whenEmptyCommand(int initialX, int initialY, String initialCardinal, String expectedCoordinate) {
+            "1, 3, N, '1 3 N'"})
+    void
+    returnInitialPosition_whenEmptyCommand(
+            int initialX, int initialY, String initialCardinal,
+            String expectedCoordinate
+    ) {
         final String emptyCommand = "";
         final MarsRover rover = new MarsRover(initialX, initialY, initialCardinal);
 
         final String actualCoordinate = rover.execute(emptyCommand);
 
+        assertThat(actualCoordinate, is(expectedCoordinate));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1, 2, N, M, '1 3 N'",
+            "1, 1, N, MM, '1 3 N'",
+            "0, 0, N, MMMM, '0 4 N'",
+            "1, 1, S, M, '1 0 S'",
+    })
+    void
+    move(
+            int initialX, int initialY, String initialCardinal,
+            String commands,
+            String expectedCoordinate
+    ) {
+        final MarsRover rover = new MarsRover(initialX, initialY, initialCardinal);
+        String actualCoordinate = rover.execute(commands);
         assertThat(actualCoordinate, is(expectedCoordinate));
     }
 
