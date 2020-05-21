@@ -127,3 +127,8 @@
 .idea/compiler.xml
 *.class
 target/classes/application.properties
+.idea/libraries/Maven__org_junit_vintage_junit_vintage_engine_5_6_2.xml
+.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_6_2.xml
+.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_6_2.xml
+mars-rover-api.iml
+mars-rover-api.iml

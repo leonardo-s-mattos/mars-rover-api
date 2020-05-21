@@ -2,9 +2,22 @@ package com.mattos.marsrover.domain;
 
 public class MarsRover {
 
-    public MarsRover(int x, int y, String cardinal) {}
+    private final int x;
+    private final int y;
+    private final String cardinal;
+
+    public MarsRover(int x, int y, String cardinal) {
+        this.x = x;
+        this.y = y;
+        this.cardinal = cardinal;
+    }
+
     public String execute(String commands) {
-        return null;
+        return formatCoordinate();
+    }
+
+    private String formatCoordinate() {
+        return String.format("%d %d %s", x, y, cardinal);
     }
 
 }

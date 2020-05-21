@@ -1,17 +1,23 @@
 package com.mattos.marsrover.domain;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import org.junit.jupiter.api.Test;
 
 public class MarsRoverShould {
 
-    @Test
-    void return_initial_position_of_rover_without_any_command() {
+    @ParameterizedTest
+    @CsvSource({"1, 2, N, '1 2 N'",
+                "1, 3, N, '1 3 N'"})
+    void returnInitialPosition_whenEmptyCommand(int initialX, int initialY, String initialCardinal, String expectedCoordinate) {
         final String emptyCommand = "";
+        final MarsRover rover = new MarsRover(initialX, initialY, initialCardinal);
 
-        assertThat(new MarsRover(1,2,"N").execute(emptyCommand),
-                is("1 2 N"));
+        final String actualCoordinate = rover.execute(emptyCommand);
+
+        assertThat(actualCoordinate, is(expectedCoordinate));
     }
 
 }
