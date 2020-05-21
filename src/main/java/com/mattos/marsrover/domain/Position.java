@@ -3,9 +3,9 @@ package com.mattos.marsrover.domain;
 class Position {
     private final int x;
     private final int y;
-    private final String cardinal;
+    private final Cardinal cardinal;
 
-    Position(int x, int y, String cardinal) {
+    Position(int x, int y, Cardinal cardinal) {
         this.x = x;
         this.y = y;
         this.cardinal = cardinal;
@@ -19,11 +19,11 @@ class Position {
         return y;
     }
 
-    public String cardinal() {
+    public Cardinal cardinal() {
         return cardinal;
     }
 
     public static Position starting(){
-        return new Position(0,0, "N");
+        return new Position(0,0, new Cardinal.North());
     }
 }

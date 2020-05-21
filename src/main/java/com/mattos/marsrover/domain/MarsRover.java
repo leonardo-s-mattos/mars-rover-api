@@ -4,22 +4,12 @@ public class MarsRover {
 
     private Position position;
 
-    private static final String MOVE_COMMAND = "M";
-    private static final String TURN_LEFT = "L";
-    private static final String TURN_RIGHT = "R";
-
-    private static final String NORTH = "N";
-    private static final String SOUTH = "S";
-    private static final String WEST = "W";
-    private static final String EAST = "E";
-
     private static final int UP = 1;
     private static final int DOWN = -1;
     private static final int RIGHT = 1;
     private static final int LEFT = -1;
 
-    private static final String COORDINATE_FORMAT = "%d %d %s";
-    private static final String INTO_CHARACTERS = "";
+    private static final String COORDINATE_FORMAT = "%d, %d, %s";
 
     public MarsRover(Position position) {
         this.position = position;
@@ -29,15 +19,30 @@ public class MarsRover {
         this.position = Position.starting();
     }
 
-    public String execute(String instructions) {
+    public void move() {
+        if (facing(Cardinal.NORTH)) moveVertically(UP);
+        if (facing(Cardinal.SOUTH)) moveVertically(DOWN);
+        if (facing(Cardinal.EAST)) moveHorizontally(RIGHT);
+        if (facing(Cardinal.WEST)) moveHorizontally(LEFT);
+    }
 
-        String[] individualInstructions = instructions.split(INTO_CHARACTERS);
+    private void moveVertically(int stepSize) {
+        position = new Position(position.X(), position.Y() + stepSize, position.cardinal());
+    }
 
-        for (String instruction:individualInstructions) {
-            if (instruction.equals(MOVE_COMMAND)) move();
-            if (instruction.equals(TURN_LEFT)) position = turnLeft();
-            if (instruction.equals(TURN_RIGHT)) position = turnRight();
-        }
+    private void moveHorizontally(int stepSize) {
+        position = new Position(position.X() + stepSize, position.Y(), position.cardinal());
+    }
+
+    public void turnLeft() {
+        position = new Position(position.X(), position.Y(), position.cardinal().left());
+    }
+
+    public void turnRight() {
+        position = new Position(position.X(), position.Y(), position.cardinal().right());
+    }
+
+    public String giveCurrentPosition() {
         return formatCoordinate();
     }
 
@@ -45,37 +50,7 @@ public class MarsRover {
         return String.format(COORDINATE_FORMAT, position.X(), position.Y(), position.cardinal());
     }
 
-    private boolean facing(String direction) {
-        return this.position.cardinal().equals(direction);
+    private boolean facing(String givenDirection) {
+        return this.position.cardinal().name().equals(givenDirection);
     }
-
-    private void move(){
-        if (facing(NORTH)) moveVertically(UP);
-        if (facing(SOUTH)) moveVertically(DOWN);
-        if (facing(EAST)) moveHorizontally(RIGHT);
-        if (facing(WEST)) moveHorizontally(LEFT);
-    }
-
-    private void moveVertically(int stepSize) {
-        position = new Position(position.X(), position.Y()+stepSize, position.cardinal());
-    }
-
-    private void moveHorizontally(int stepSize) {
-        position = new Position(position.X()+stepSize, position.Y(), position.cardinal());
-    }
-
-    private Position turnLeft(){
-        if (facing(NORTH)) return new Position(position.X(), position.Y(), WEST);
-        if (facing(SOUTH)) return new Position(position.X(), position.Y(), EAST);
-        if (facing(EAST)) return new Position(position.X(), position.Y(), NORTH);
-        return new Position(position.X(), position.Y(), SOUTH);
-    }
-
-    private Position turnRight(){
-        if (facing(NORTH)) return new Position(position.X(), position.Y(), EAST);
-        if (facing(SOUTH)) return new Position(position.X(), position.Y(), WEST);
-        if (facing(EAST)) return new Position(position.X(), position.Y(), SOUTH);
-        return new Position(position.X(), position.Y(), NORTH);
-    }
-
 }
