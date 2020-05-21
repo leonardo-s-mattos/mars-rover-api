@@ -1,7 +1,7 @@
 package com.mattos.marsrover.application.service;
 
 import com.mattos.marsrover.domain.Mars;
-import com.mattos.marsrover.domain.MarsRover;
+import com.mattos.marsrover.domain.Rover;
 import com.mattos.marsrover.domain.Position;
 import com.mattos.marsrover.input.port.InvalidCommandException;
 import com.mattos.marsrover.input.port.MoveUseCasePort;
@@ -18,15 +18,15 @@ public class RoverControlService implements MoveUseCasePort {
 
         String[] individualInstructions = instructions.split(INTO_CHARACTERS);
 
-        MarsRover rover = new MarsRover();
+        Rover rover = new Rover();
 
         if(!instructions.isEmpty()) {
             for (String instruction : individualInstructions) {
                 switch (instruction) {
                     case MOVE_COMMAND:
                         rover.move();
-                        if (isRoverOutOfBounds(rover.giveCurrentPosition()))
-                            throw new InvalidCommandException("Instructions drive rover outside Mars");
+                        if (isRoverOutOfBounds(rover.currentPosition()))
+                            throw new InvalidCommandException("Instructions drove rover outside Mars");
                         break;
                     case TURN_LEFT:
                         rover.turnLeft();
@@ -35,11 +35,11 @@ public class RoverControlService implements MoveUseCasePort {
                         rover.turnRight();
                         break;
                     default:
-                        throw new InvalidCommandException("Unsupported instruction. Only M, R and L combinations are valid");
+                        throw new InvalidCommandException("Unsupported instruction. Only M, R or L combinations are valid");
                 }
             }
         }
-        return rover.giveCurrentPosition().formatCoordinate();
+        return rover.currentPosition().formatCoordinate();
     }
 
     private boolean isRoverOutOfBounds(Position position){

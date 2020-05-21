@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class MarsRoverShould {
+public class RoverShould {
 
     @ParameterizedTest
     @CsvSource({
@@ -20,9 +20,9 @@ public class MarsRoverShould {
             int initialX, int initialY, String initialCardinal,
             String expectedCoordinate
     ) {
-        final MarsRover rover = new MarsRover(new Position(initialX, initialY, Cardinal.cardinalFor(initialCardinal)));
+        final Rover rover = new Rover(new Position(initialX, initialY, Cardinal.cardinalFor(initialCardinal)));
         rover.move();
-        String actualCoordinate = rover.giveCurrentPosition().formatCoordinate();
+        String actualCoordinate = rover.currentPosition().formatCoordinate();
         assertThat(actualCoordinate, is(expectedCoordinate));
     }
 
@@ -38,10 +38,10 @@ public class MarsRoverShould {
             String expectedCardinal) {
 
         final String expectedPosition = "1, 1, " + expectedCardinal;
-        final MarsRover rover = new MarsRover(new Position(1, 1, Cardinal.cardinalFor(initialCardinal)));
+        final Rover rover = new Rover(new Position(1, 1, Cardinal.cardinalFor(initialCardinal)));
 
         rover.turnLeft();
-        final String actualPosition = rover.giveCurrentPosition().formatCoordinate();
+        final String actualPosition = rover.currentPosition().formatCoordinate();
 
         assertThat(actualPosition, is(expectedPosition));
     }
@@ -58,9 +58,9 @@ public class MarsRoverShould {
             String expectedCardinal) {
 
         final String expectedPosition = "1, 1, " + expectedCardinal;
-        final MarsRover rover = new MarsRover(new Position(1, 1, Cardinal.cardinalFor(initialCardinal)));
+        final Rover rover = new Rover(new Position(1, 1, Cardinal.cardinalFor(initialCardinal)));
         rover.turnRight();
-        final String actualPosition = rover.giveCurrentPosition().formatCoordinate();
+        final String actualPosition = rover.currentPosition().formatCoordinate();
 
         assertThat(actualPosition, is(expectedPosition));
     }

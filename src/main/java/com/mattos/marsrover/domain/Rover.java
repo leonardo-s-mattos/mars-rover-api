@@ -1,6 +1,6 @@
 package com.mattos.marsrover.domain;
 
-public class MarsRover {
+public class Rover {
 
     private Position position;
 
@@ -9,11 +9,11 @@ public class MarsRover {
     private static final int RIGHT = 1;
     private static final int LEFT = -1;
 
-    public MarsRover(Position position) {
+    public Rover(Position position) {
         this.position = position;
     }
 
-    public MarsRover() {
+    public Rover() {
         this.position = Position.starting();
     }
 
@@ -40,7 +40,7 @@ public class MarsRover {
         position = new Position(position.X(), position.Y(), position.cardinal().right());
     }
 
-    public Position giveCurrentPosition() {
+    public Position currentPosition() {
         return position;
     }
 
