@@ -22,7 +22,7 @@ public class MarsRoverShould {
     ) {
         final MarsRover rover = new MarsRover(new Position(initialX, initialY, Cardinal.cardinalFor(initialCardinal)));
         rover.move();
-        String actualCoordinate = rover.giveCurrentPosition();
+        String actualCoordinate = rover.giveCurrentPosition().formatCoordinate();
         assertThat(actualCoordinate, is(expectedCoordinate));
     }
 
@@ -41,7 +41,7 @@ public class MarsRoverShould {
         final MarsRover rover = new MarsRover(new Position(1, 1, Cardinal.cardinalFor(initialCardinal)));
 
         rover.turnLeft();
-        final String actualPosition = rover.giveCurrentPosition();
+        final String actualPosition = rover.giveCurrentPosition().formatCoordinate();
 
         assertThat(actualPosition, is(expectedPosition));
     }
@@ -60,7 +60,7 @@ public class MarsRoverShould {
         final String expectedPosition = "1, 1, " + expectedCardinal;
         final MarsRover rover = new MarsRover(new Position(1, 1, Cardinal.cardinalFor(initialCardinal)));
         rover.turnRight();
-        final String actualPosition = rover.giveCurrentPosition();
+        final String actualPosition = rover.giveCurrentPosition().formatCoordinate();
 
         assertThat(actualPosition, is(expectedPosition));
     }

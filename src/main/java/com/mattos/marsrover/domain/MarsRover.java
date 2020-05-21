@@ -9,8 +9,6 @@ public class MarsRover {
     private static final int RIGHT = 1;
     private static final int LEFT = -1;
 
-    private static final String COORDINATE_FORMAT = "%d, %d, %s";
-
     public MarsRover(Position position) {
         this.position = position;
     }
@@ -42,12 +40,8 @@ public class MarsRover {
         position = new Position(position.X(), position.Y(), position.cardinal().right());
     }
 
-    public String giveCurrentPosition() {
-        return formatCoordinate();
-    }
-
-    private String formatCoordinate() {
-        return String.format(COORDINATE_FORMAT, position.X(), position.Y(), position.cardinal());
+    public Position giveCurrentPosition() {
+        return position;
     }
 
     private boolean facing(String givenDirection) {

@@ -1,6 +1,9 @@
 package com.mattos.marsrover.domain;
 
-class Position {
+public class Position {
+
+    private static final String COORDINATE_FORMAT = "%d, %d, %s";
+
     private final int x;
     private final int y;
     private final Cardinal cardinal;
@@ -25,5 +28,9 @@ class Position {
 
     public static Position starting(){
         return new Position(0,0, new Cardinal.North());
+    }
+
+    public String formatCoordinate() {
+        return String.format(COORDINATE_FORMAT, X(), Y(), cardinal());
     }
 }
