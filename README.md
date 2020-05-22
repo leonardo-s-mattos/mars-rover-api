@@ -13,6 +13,7 @@ List of features:
 * Junit 5 test cases
 * API documentation with Swagger
 * API testing with Karate
+* CD Pipeline with Github Actions
 
 #### How to run locally:
 For now this is a simple Spring Boot app. To run locally, after you cloning this repo, you need to:
