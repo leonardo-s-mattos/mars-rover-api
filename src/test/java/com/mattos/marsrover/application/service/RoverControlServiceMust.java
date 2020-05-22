@@ -17,7 +17,7 @@ public class RoverControlServiceMust {
 
     @BeforeEach
     public void init(){
-        target = new RoverControlService();
+        target = new RoverControlService(5,5);
     }
 
     @ParameterizedTest

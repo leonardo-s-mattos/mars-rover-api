@@ -1,19 +1,39 @@
 package com.mattos.marsrover.application.service;
 
-import com.mattos.marsrover.domain.Mars;
 import com.mattos.marsrover.domain.Rover;
 import com.mattos.marsrover.domain.Position;
 import com.mattos.marsrover.input.port.InvalidCommandException;
 import com.mattos.marsrover.input.port.MoveUseCasePort;
-import org.springframework.stereotype.Service;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
+@ConfigurationProperties(prefix = "mars")
 public class RoverControlService implements MoveUseCasePort {
 
     private static final String INTO_CHARACTERS = "";
     private static final String MOVE_COMMAND = "M";
     private static final String TURN_LEFT = "L";
     private static final String TURN_RIGHT = "R";
+
+    @Setter
+    @Value("${width:5}")
+    private int marsWidth;
+
+    @Setter
+    @Value("${height:5}")
+    private int marsHeight;
+
+    public RoverControlService(){
+        super();
+    }
+
+    public RoverControlService(int marsWidth, int marsHeight){
+        this.marsHeight = marsHeight;
+        this.marsWidth = marsWidth;
+    }
 
     @Override
     public String execute(String instructions) {
@@ -22,7 +42,7 @@ public class RoverControlService implements MoveUseCasePort {
 
         Rover rover = new Rover();
 
-        if(!instructions.isEmpty()) {
+        if (!instructions.isEmpty()) {
             for (String instruction : individualInstructions) {
                 switch (instruction) {
                     case MOVE_COMMAND:
@@ -44,8 +64,11 @@ public class RoverControlService implements MoveUseCasePort {
         return rover.currentPosition().formatCoordinate();
     }
 
-    private boolean isRoverOutOfBounds(Position position){
-        return new Mars(5,5).isOnMars(position.X(), position.Y());
+    private boolean isRoverOutOfBounds(Position position) {
+
+        return (position.X() < 0 || position.X() >= marsWidth) ||
+                (position.Y() < 0 || position.Y() >= marsHeight);
+
     }
 
 
