@@ -147,3 +147,12 @@ mars-rover-api.iml
 .idea/libraries/Maven__io_springfox_springfox_core_2_9_2.xml
 .idea/libraries/Maven__com_google_guava_guava_20_0.xml
 .idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml
+.idea/libraries/Maven__com_intuit_karate_karate_apache_0_9_5.xml
+.idea/libraries/Maven__com_intuit_karate_karate_core_0_9_5.xml
+.idea/libraries/Maven__com_intuit_karate_karate_junit5_0_9_5.xml
+.idea/libraries/Maven__de_siegmar_fastcsv_1_0_3.xml
+.idea/libraries/Maven__info_cukes_cucumber_core_1_2_5.xml
+.idea/libraries/Maven__info_cukes_cucumber_java_1_2_5.xml
+.idea/libraries/Maven__info_picocli_picocli_4_0_3.xml
+.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_12.xml
+.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_30.xml

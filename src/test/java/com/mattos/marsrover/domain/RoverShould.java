@@ -1,7 +1,10 @@
 package com.mattos.marsrover.domain;
 
+import static org.hamcrest.Matchers.notNullValue;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -77,5 +80,22 @@ public class RoverShould {
         final String actualPosition = rover.currentPosition().formatCoordinate();
         assertThat(actualPosition, is(expectedPosition));
     }
+
+    @Test
+    void sayWhereItIs(){
+
+        //given
+        final String expectedPosition = "1, 1, N";
+        final Rover rover = new Rover(new Position(1, 1, Cardinal.cardinalFor("N")));
+
+        //when
+        Position actualPosition = rover.currentPosition();
+
+        //then
+        assertThat(actualPosition, is(notNullValue()));
+        assertThat(actualPosition.formatCoordinate(), is(expectedPosition));
+
+    }
+
 
 }

@@ -1,5 +1,7 @@
 package com.mattos.marsrover.domain;
 
+import static com.mattos.marsrover.domain.Cardinal.*;
+
 public class Rover {
 
     private Position position;
@@ -18,18 +20,10 @@ public class Rover {
     }
 
     public void move() {
-        if (facing(Cardinal.NORTH)) moveVertically(UP);
-        if (facing(Cardinal.SOUTH)) moveVertically(DOWN);
-        if (facing(Cardinal.EAST)) moveHorizontally(RIGHT);
-        if (facing(Cardinal.WEST)) moveHorizontally(LEFT);
-    }
-
-    private void moveVertically(int stepSize) {
-        position = new Position(position.X(), position.Y() + stepSize, position.cardinal());
-    }
-
-    private void moveHorizontally(int stepSize) {
-        position = new Position(position.X() + stepSize, position.Y(), position.cardinal());
+        if (isFacing(NORTH)) moveVertically(UP);
+        if (isFacing(SOUTH)) moveVertically(DOWN);
+        if (isFacing(EAST)) moveHorizontally(RIGHT);
+        if (isFacing(WEST)) moveHorizontally(LEFT);
     }
 
     public void turnLeft() {
@@ -44,7 +38,15 @@ public class Rover {
         return position;
     }
 
-    private boolean facing(String givenDirection) {
+    private boolean isFacing(String givenDirection) {
         return this.position.cardinal().name().equals(givenDirection);
+    }
+
+    private void moveVertically(int stepSize) {
+        position = new Position(position.X(), position.Y() + stepSize, position.cardinal());
+    }
+
+    private void moveHorizontally(int stepSize) {
+        position = new Position(position.X() + stepSize, position.Y(), position.cardinal());
     }
 }

@@ -26,6 +26,8 @@ public class RoverControlService implements MoveUseCasePort {
     @Value("${height:5}")
     private int marsHeight;
 
+    private Rover rover;
+
     public RoverControlService(){
         super();
     }
@@ -40,7 +42,7 @@ public class RoverControlService implements MoveUseCasePort {
 
         String[] individualInstructions = instructions.split(INTO_CHARACTERS);
 
-        Rover rover = new Rover();
+        deployRover();
 
         if (!instructions.isEmpty()) {
             for (String instruction : individualInstructions) {
@@ -69,6 +71,10 @@ public class RoverControlService implements MoveUseCasePort {
         return (position.X() < 0 || position.X() >= marsWidth) ||
                 (position.Y() < 0 || position.Y() >= marsHeight);
 
+    }
+
+    private void deployRover(){
+        rover = new Rover();
     }
 
 
