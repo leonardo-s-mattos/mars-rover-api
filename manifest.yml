@@ -4,8 +4,8 @@ random-route: false
 path: ./target/mars-rover-0.9.jar
 instances: 1
 routes:
-  - route: leo-exercise-dev.cfapps.io
-buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.16
+  - route: mars-rover.cfapps.io
+#buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.16
 #health-check-type: http
 
 applications:
