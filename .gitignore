@@ -156,3 +156,17 @@ mars-rover-api.iml
 .idea/libraries/Maven__info_picocli_picocli_4_0_3.xml
 .idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_12.xml
 .idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_30.xml
+target/classes/META-INF/spring-configuration-metadata.json
+target/failsafe-reports/failsafe-summary.xml
+target/mars-rover-0.9.jar
+target/mars-rover-0.9.jar.original
+target/maven-archiver/pom.properties
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+target/surefire-reports/com.mattos.marsrover.api.KarateTests.txt
+target/surefire-reports/com.mattos.marsrover.MarsRoverApiApplicationTests.txt
+target/surefire-reports/TEST-com.mattos.marsrover.api.KarateTests.xml
+target/surefire-reports/TEST-com.mattos.marsrover.MarsRoverApiApplicationTests.xml
+target/test-classes/com/mattos/marsrover/api/functional.feature
