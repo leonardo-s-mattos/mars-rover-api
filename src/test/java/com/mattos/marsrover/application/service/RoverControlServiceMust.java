@@ -1,6 +1,7 @@
 package com.mattos.marsrover.application.service;
 
 import com.mattos.marsrover.input.port.InvalidCommandException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -12,6 +13,13 @@ import static org.hamcrest.Matchers.is;
 
 public class RoverControlServiceMust {
 
+    RoverControlService target;
+
+    @BeforeEach
+    public void init(){
+        target = new RoverControlService();
+    }
+
     @ParameterizedTest
     @CsvSource({"0, 0, N, '0, 0, N'"})
     void
@@ -19,11 +27,13 @@ public class RoverControlServiceMust {
             int initialX, int initialY, String initialCardinal,
             String expectedCoordinate
     ) {
+        //given
         final String emptyInstruction = "";
-        final RoverControlService roverControl = new RoverControlService();
 
-        final String actualCoordinate = roverControl.execute(emptyInstruction);
+        //when
+        final String actualCoordinate = target.execute(emptyInstruction);
 
+        //then
         assertThat(actualCoordinate, is(expectedCoordinate));
     }
 
@@ -37,9 +47,11 @@ public class RoverControlServiceMust {
             String instructions,
             String expectedCoordinate
     ) {
-        final RoverControlService roverControl = new RoverControlService();
-        final String actualCoordinate = roverControl.execute(instructions);
 
+        //when
+        final String actualCoordinate = target.execute(instructions);
+
+        //then
         assertThat(actualCoordinate, is(expectedCoordinate));
     }
 
@@ -47,9 +59,12 @@ public class RoverControlServiceMust {
     public void
     complain_whenInstructionsArentSupported(){
 
+        //when
         Throwable exception = assertThrows(InvalidCommandException.class, () -> {
-            new RoverControlService().execute("AAA");
+           target.execute("AAA");
         });
+
+        //then
         assertTrue(exception.getMessage().startsWith("Unsupported instruction"));
 
     }
@@ -58,9 +73,12 @@ public class RoverControlServiceMust {
     public void
     complain_whenInstructionsDriveRoverOutOfBounds(){
 
+        //when
         Throwable exception = assertThrows(InvalidCommandException.class, () -> {
-            new RoverControlService().execute("MMMMMMMMMMMMMMMMMMM");
+            target.execute("MMMMMMMMMMMMMMMMMMM");
         });
+
+        //then
         assertTrue(exception.getMessage().contains("outside Mars"));
 
     }

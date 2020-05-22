@@ -5,7 +5,9 @@ import com.mattos.marsrover.domain.Rover;
 import com.mattos.marsrover.domain.Position;
 import com.mattos.marsrover.input.port.InvalidCommandException;
 import com.mattos.marsrover.input.port.MoveUseCasePort;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RoverControlService implements MoveUseCasePort {
 
     private static final String INTO_CHARACTERS = "";

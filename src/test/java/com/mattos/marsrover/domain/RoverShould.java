@@ -20,8 +20,14 @@ public class RoverShould {
             int initialX, int initialY, String initialCardinal,
             String expectedCoordinate
     ) {
+
+        //given
         final Rover rover = new Rover(new Position(initialX, initialY, Cardinal.cardinalFor(initialCardinal)));
+
+        //when
         rover.move();
+
+        //then
         String actualCoordinate = rover.currentPosition().formatCoordinate();
         assertThat(actualCoordinate, is(expectedCoordinate));
     }
@@ -37,12 +43,15 @@ public class RoverShould {
             String initialCardinal,
             String expectedCardinal) {
 
+        //given
         final String expectedPosition = "1, 1, " + expectedCardinal;
         final Rover rover = new Rover(new Position(1, 1, Cardinal.cardinalFor(initialCardinal)));
 
+        //when
         rover.turnLeft();
-        final String actualPosition = rover.currentPosition().formatCoordinate();
 
+        //then
+        final String actualPosition = rover.currentPosition().formatCoordinate();
         assertThat(actualPosition, is(expectedPosition));
     }
 
@@ -57,11 +66,15 @@ public class RoverShould {
             String initialCardinal,
             String expectedCardinal) {
 
+        //given
         final String expectedPosition = "1, 1, " + expectedCardinal;
         final Rover rover = new Rover(new Position(1, 1, Cardinal.cardinalFor(initialCardinal)));
-        rover.turnRight();
-        final String actualPosition = rover.currentPosition().formatCoordinate();
 
+        //when
+        rover.turnRight();
+
+        //then
+        final String actualPosition = rover.currentPosition().formatCoordinate();
         assertThat(actualPosition, is(expectedPosition));
     }
 
