@@ -6,7 +6,7 @@ instances: 1
 routes:
   - route: leo-exercise-dev.cfapps.io
 buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.16
-health-check-type: http
+#health-check-type: http
 
 applications:
   - name: mars-rover
