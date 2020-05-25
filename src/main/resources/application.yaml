@@ -1,0 +1,21 @@
+#Mars plateau dimensions
+mars:
+  height: 5
+  width: 5
+
+spring:
+  application:
+    name: mars-rover-api
+
+server:
+  port: 8080
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8080/eureka}
+    instance:
+      preferIpAddress: true
+
+
