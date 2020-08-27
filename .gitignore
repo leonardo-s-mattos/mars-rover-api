@@ -170,3 +170,7 @@ target/surefire-reports/com.mattos.marsrover.MarsRoverApiApplicationTests.txt
 target/surefire-reports/TEST-com.mattos.marsrover.api.KarateTests.xml
 target/surefire-reports/TEST-com.mattos.marsrover.MarsRoverApiApplicationTests.xml
 target/test-classes/com/mattos/marsrover/api/functional.feature
+.idea/libraries/Maven__org_junit_platform_junit_platform_runner_1_6_2.xml
+mars-rover-api.iml
+target/classes/application.yaml
+mars-rover-api.iml
